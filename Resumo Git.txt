@@ -1,0 +1,80 @@
+-------------------------------------------------------------------------Introdução-------------------------------------------------------------------------
+
+	O Git é um sistema de controle de versões, voltado principalmente para o desenvolvimento de softwares, mas pode ser utilizado para armazenar outros 
+arquivos, além de softwares, mas basicamente serve para armazenar projetos, tornando mais fácil o trabalho em conjunto e evitando possíveis erros ao 
+atualizar o programa, possibilitando retornar para a versão anterior.
+	O GitHub e o Git não são a mesma coisa, o Git serve para criar versões dos projetos, já o GitHub é o site onde se encontram os projetos versionados.
+	Para utilizar o Git, é necessário instalar o Git no seu computador, e então é preciso utilizar os comandos no Git para inserir o seu projeto, e para 
+usar o GitHub é necessário criar uma conta.
+
+---------------------------------------------------------------------Comandos Iniciais---------------------------------------------------------------------
+
+	Os comandos iniciais do Git são:
+•	Definir nome de usuário: git config --global user.name "nome de usuário"
+•	Definir email: git config --global user.email "email"
+	No Git, existem repositórios, que são os lugares onde é possível guardar os arquivos do projeto, para isso, é possível usar os seguintes comandos:
+•	Criar uma pasta para o projeto: mkdir nome-da-pasta
+•	Acessar a pasta: cd nome-da-pasta
+•	Iniciar o repositório: git init
+	Os arquivos no Git possuem 4 status (untracked, unmodified, modified e staged), o untracked é quando o arquivo não foi adicionado ao Git, o 
+unmodified é quando o arquivo foi adicionado, porem não sofreu nenhuma alteração, o modified é quando ele sofreu alguma alteração, já a o staged é a área 
+para onde o arquivo vai para ser criada a versão.
+	Para mexer com os arquivos, os comandos principais são:
+•	Para adicionar um arquivo: git add nome-do-arquivo
+•	Para verificar o status do arquivo: git status
+•	Para criar uma versão: git commit -m “mensagem”
+•	Exibir histórico: git log
+•	Exibir alterações antes de usar o commit: git diff
+•	Exibir alterações após o commit: git show nome-do-commit
+•	Para desfazer as alterações de um arquivo modified: git checkout nome-do-arquivo
+•	Para desfazer o add: git reset HEAD nome-do-arquivo
+•	Para desfazer um commit sem apagá-lo por completo: git reset –soft nome-do-commit-anterior-do-que-será-apagado
+•	Para desfazer um commit por completo: git reset --hard nome-do-commit-anterior-do-que-será-apagado
+OBS: Para usar o commit, é necessário usar o add antes.
+
+--------------------------------------------------------------------------Branchs--------------------------------------------------------------------------
+
+	O Git possui Branchs, que em poucas palavras são ponteiros móveis que levam a um commit, eles podem ser uteis para alterar o projeto sem alterar o 
+local principal, que seria o branch chamado master, é fácil de criar e de apagar, possibilita o trabalho de várias pessoas ao mesmo tempo e evita possíveis 
+conflitos que poderiam acontecer se várias pessoas estiverem mexendo no mesmo branch.
+	Para usar os branchs, use os seguintes comandos:
+•	Para criar um branch: git checkout -b nome-do-branch
+•	Para visualizar os branchs existentes: git branch
+•	Para ir para um branch: git checkout nome-do-branch
+•	Para apagar um branch: git branch -D nome-do-branch
+	Para unir os branchs, existem duas formas, a primeira utilizando o merge e a segunda utilizando o rebase. 
+	O merge cria um commit extra juntando os commits de dois branchs, o lado bom de se utilizar o merge é que ele não vai destruir nenhum commit, e o 
+lado negativo é que ele gera um commit extra.
+	O rebase copia o commit ramificado e o colocar na frente dos outros, apagando o commit que foi copiado, aplicando todas as mudanças na frente da 
+fila, onde ambos os branchs apontaram para o mesmo commit, o lado bom é que se evita commits extras, deixando o histórico linear, porém, a ordem linear é 
+perdida.
+	Comandos do merge e do rebase:
+•	Merge: git merge nome-do-branch
+•	Rebase: git rebase nome-do-branch
+
+---------------------------------------------------------------------Utilizando o GitHub--------------------------------------------------------------------
+
+1º) Crie um repositório no GitHub;
+2º) Crie uma chave SSH;
+	Para isso use os seguintes comandos no Git:
+	1.	ssh-keygen -t rsa -b 4096 -C “email”
+	2.	cd ~/.ssh/
+	3.	ls
+	4.	cat nome-que-apareceu.pub
+	Obs: Copie a chave gerada e entre na sua conta do GitHub.
+3º) Use a chave no GitHub;
+	Para isso entre nas configurações do seu GitHub e vá em SSH and GPG keys, crie uma nova SSH key e insira a chave copiada no item anterior.
+4º) Ligando o repositório local para o remoto
+Utilize o seguinte comando no git para ligar o repositório local ao remoto:
+	git remote add origin endereço-do-repositorio-do-github
+5º) Enviando arquivos
+Utilize o seguinte comando para mandar os arquivos do repositório local para o remoto:
+	git push -u origin master
+6º) Enviando Mudanças
+Utilize o seguinte comando para mandar as alterações do repositório local para o remoto:
+	git push origin master
+7º) Clonando um repositório remoto para a máquina local
+Utilize o seguinte comando para clonar o repositorio remoto para a sua máquina:
+	git clone endereço-do-repositorio-do-git nome-do-repositorio-clonado
+
+Por: Claus Alberto Bienemann
